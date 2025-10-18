@@ -37,6 +37,7 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 - **Lista de Feedbacks**: Visualização completa com categorização colorida
 - **Filtros Dinâmicos**: Filtrar por categoria (Todos/Que Bom/Que Pena/Que Tal)
 - **Timestamps**: Data e hora de cada feedback
+- **Zerar Dados**: Botão para remover todos os feedbacks e iniciar nova avaliação
 
 ### 3️⃣ Sistema de Exportação
 ✅ **Completo**
@@ -45,7 +46,14 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 - Filtros opcionais por categoria
 - Download automático de arquivos
 
-### 4️⃣ APIs RESTful
+### 4️⃣ Gerenciamento de Avaliações
+✅ **Completo**
+- **Zerar Todos os Dados**: Função para limpar feedbacks e iniciar nova rodada de avaliação
+- **Dupla Confirmação**: Sistema de segurança com duas confirmações antes de deletar
+- **Contador de Backup**: Informa quantos registros foram removidos
+- **Reset Completo**: Limpa dados e reseta contador de IDs
+
+### 5️⃣ APIs RESTful
 ✅ **Completo**
 
 | Método | Endpoint | Descrição |
@@ -56,6 +64,7 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 | GET | `/api/export?format=json` | Exportar todos os feedbacks em JSON |
 | GET | `/api/export?format=csv` | Exportar todos os feedbacks em CSV |
 | DELETE | `/api/feedbacks/:id` | Remover feedback específico |
+| DELETE | `/api/feedbacks` | **NOVO**: Zerar todos os feedbacks (reiniciar avaliação) |
 
 ## 🏗️ Arquitetura Técnica
 
@@ -123,6 +132,28 @@ CREATE INDEX idx_feedbacks_category_date ON feedbacks(category, created_at);
 5. **Leia feedbacks**: Lista completa com filtros por categoria
 6. **Exporte dados**: Botão "Exportar" para baixar em JSON ou CSV
 7. **Análise externa**: Importe os dados em ferramentas de análise (Excel, Power BI, etc.)
+8. **Zerar dados**: Botão vermelho "Zerar Dados" para iniciar nova avaliação
+
+#### ⚠️ Como Zerar Dados e Iniciar Nova Avaliação
+
+**Quando usar:**
+- Ao concluir uma retrospectiva/avaliação
+- Para iniciar um novo ciclo de feedback
+- Após exportar os dados antigos
+
+**Como funciona:**
+1. Clique no botão vermelho **"Zerar Dados"** no canto superior direito do dashboard
+2. **Primeira confirmação**: Sistema pergunta se você quer prosseguir (recomenda exportar antes)
+3. **Segunda confirmação**: Confirmação final para evitar exclusão acidental
+4. **Processamento**: Todos os feedbacks são removidos permanentemente
+5. **Resultado**: Sistema informa quantos registros foram deletados
+6. **Dashboard atualiza**: Mostra contadores zerados, pronto para nova rodada
+
+**⚠️ IMPORTANTE:**
+- Esta ação é **irreversível** - dados deletados não podem ser recuperados
+- **Sempre exporte os dados antes** de zerar (use botão "Exportar")
+- Dupla confirmação previne exclusão acidental
+- IDs são resetados (próximo feedback será ID 1)
 
 ## 🚀 Deploy e Instalação
 

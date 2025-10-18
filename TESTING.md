@@ -82,6 +82,25 @@
    - [ ] Confirmar que arquivo JSON baixa automaticamente
    - [ ] Abrir JSON e validar estrutura de array com objetos
 
+8. **Zerar Todos os Dados (Nova Funcionalidade)**
+   - [ ] Verificar se o botão vermelho "Zerar Dados" está visível no header
+   - [ ] Clicar no botão "Zerar Dados"
+   - [ ] Confirmar que aparece a primeira mensagem de alerta
+   - [ ] Ler aviso: "Esta ação irá DELETAR TODOS os feedbacks permanentemente"
+   - [ ] Testar cancelar na primeira confirmação (não deve deletar nada)
+   - [ ] Clicar novamente e confirmar primeira mensagem
+   - [ ] Confirmar que aparece a segunda mensagem de segurança
+   - [ ] Ler aviso: "ÚLTIMA CONFIRMAÇÃO - Esta ação NÃO PODE SER DESFEITA"
+   - [ ] Testar cancelar na segunda confirmação (não deve deletar nada)
+   - [ ] Clicar novamente e confirmar ambas as mensagens
+   - [ ] Verificar que botão muda para "Processando..." com spinner
+   - [ ] Confirmar que aparece alerta de sucesso com contagem de registros removidos
+   - [ ] Verificar que dashboard atualiza automaticamente
+   - [ ] Confirmar que todos os contadores mostram 0
+   - [ ] Verificar que gráficos ficam vazios
+   - [ ] Confirmar que lista de feedbacks mostra "Nenhum feedback encontrado"
+   - [ ] Validar que botão volta ao estado normal após operação
+
 ### ✅ APIs REST
 
 **Ferramentas**: Use `curl` ou Postman/Insomnia
@@ -121,6 +140,16 @@
    - [ ] Verificar que arquivo JSON foi baixado
    - [ ] Testar formato CSV: `?format=csv`
    - [ ] Testar filtro por categoria: `?format=json&category=que_tal`
+
+5. **DELETE /api/feedbacks (Zerar Todos os Dados)**
+   ```bash
+   # ⚠️ ATENÇÃO: Isso remove TODOS os feedbacks!
+   curl -X DELETE https://3000-i7eh6xypmiuuuw3jeacqi-a402f90a.sandbox.novita.ai/api/feedbacks
+   ```
+   - [ ] Verificar status 200 OK
+   - [ ] Validar resposta com campos: success, message, backup_count
+   - [ ] Confirmar que `backup_count` mostra quantidade removida
+   - [ ] Verificar que `/api/stats` retorna total = 0 após zerar
 
 ### ✅ Testes de Segurança e Validação
 
