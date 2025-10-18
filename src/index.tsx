@@ -184,6 +184,35 @@ app.delete('/api/feedbacks/:id', async (c) => {
   }
 })
 
+// API: Zerar todos os feedbacks (admin)
+app.delete('/api/feedbacks', async (c) => {
+  try {
+    // Primeiro, exporta dados atuais para backup
+    const backupResult = await c.env.DB.prepare(`
+      SELECT * FROM feedbacks ORDER BY created_at DESC
+    `).all()
+    
+    // Deletar todos os registros
+    await c.env.DB.prepare(`
+      DELETE FROM feedbacks
+    `).run()
+    
+    // Resetar o auto-increment
+    await c.env.DB.prepare(`
+      DELETE FROM sqlite_sequence WHERE name='feedbacks'
+    `).run()
+    
+    return c.json({ 
+      success: true, 
+      message: 'Todos os feedbacks foram removidos',
+      backup_count: backupResult.results.length
+    })
+  } catch (error) {
+    console.error('Erro ao zerar feedbacks:', error)
+    return c.json({ error: 'Erro ao zerar feedbacks' }, 500)
+  }
+})
+
 // Página inicial - Formulário de coleta
 app.get('/', (c) => {
   return c.html(`
@@ -415,6 +444,9 @@ app.get('/dashboard', (c) => {
                             </a>
                             <button id="exportBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
                                 <i class="fas fa-download mr-2"></i>Exportar
+                            </button>
+                            <button id="resetBtn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
+                                <i class="fas fa-trash-alt mr-2"></i>Zerar Dados
                             </button>
                         </div>
                     </div>
@@ -705,6 +737,68 @@ app.get('/dashboard', (c) => {
             document.getElementById('exportBtn').addEventListener('click', async () => {
                 const format = confirm('Exportar como CSV? (OK = CSV, Cancelar = JSON)') ? 'csv' : 'json';
                 window.location.href = \`/api/export?format=\${format}\`;
+            });
+            
+            // Zerar todos os dados
+            document.getElementById('resetBtn').addEventListener('click', async () => {
+                // Primeira confirmação
+                const confirmFirst = confirm(
+                    '⚠️ ATENÇÃO: Esta ação irá DELETAR TODOS os feedbacks permanentemente!\\n\\n' +
+                    'Recomendamos exportar os dados antes de continuar.\\n\\n' +
+                    'Deseja prosseguir?'
+                );
+                
+                if (!confirmFirst) return;
+                
+                // Segunda confirmação (segurança extra)
+                const confirmSecond = confirm(
+                    '🚨 ÚLTIMA CONFIRMAÇÃO\\n\\n' +
+                    'Tem certeza ABSOLUTA que deseja zerar todos os dados?\\n\\n' +
+                    'Esta ação NÃO PODE SER DESFEITA!\\n\\n' +
+                    'Clique OK para confirmar ou Cancelar para voltar.'
+                );
+                
+                if (!confirmSecond) return;
+                
+                try {
+                    // Desabilitar botão durante a operação
+                    const resetBtn = document.getElementById('resetBtn');
+                    resetBtn.disabled = true;
+                    resetBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processando...';
+                    resetBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    
+                    // Chamar API para zerar dados
+                    const response = await axios.delete('/api/feedbacks');
+                    
+                    if (response.data.success) {
+                        // Mostrar mensagem de sucesso
+                        alert(
+                            '✅ Sucesso!\\n\\n' +
+                            response.data.message + '\\n' +
+                            \`Total de registros removidos: \${response.data.backup_count}\`
+                        );
+                        
+                        // Recarregar dados (agora vazios)
+                        await loadData();
+                        
+                        // Reabilitar botão
+                        resetBtn.disabled = false;
+                        resetBtn.innerHTML = '<i class="fas fa-trash-alt mr-2"></i>Zerar Dados';
+                        resetBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    }
+                } catch (error) {
+                    console.error('Erro ao zerar dados:', error);
+                    alert(
+                        '❌ Erro ao zerar dados!\\n\\n' +
+                        (error.response?.data?.error || 'Ocorreu um erro inesperado. Tente novamente.')
+                    );
+                    
+                    // Reabilitar botão
+                    const resetBtn = document.getElementById('resetBtn');
+                    resetBtn.disabled = false;
+                    resetBtn.innerHTML = '<i class="fas fa-trash-alt mr-2"></i>Zerar Dados';
+                    resetBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
             });
             
             // Carregar ao iniciar
