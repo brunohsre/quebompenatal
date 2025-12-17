@@ -1,8 +1,21 @@
-# 💬 Feedback Anônimo - Que Bom, Que Pena, Que Tal
+# 💬 Que Bom, Que Pena, Que Tal - Sistema de Feedback Anônimo
 
 ## 📋 Visão Geral
 
 Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida para facilitar a comunicação transparente em equipes e organizações. O sistema garante 100% de anonimato, permitindo que participantes compartilhem opiniões sinceras sobre o trabalho realizado e sugestões para o futuro.
+
+---
+
+## 🌐 URLs da Aplicação
+
+| Recurso | URL |
+|---------|-----|
+| **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev |
+| **📝 Formulário de Coleta** | https://5c9b9de3.feedback-anonimo.pages.dev/ |
+| **📊 Dashboard Administrativo** | https://5c9b9de3.feedback-anonimo.pages.dev/dashboard |
+| **💻 Repositório GitHub** | https://github.com/brunohsre/quebompenatal |
+
+---
 
 ## 🎯 Objetivos
 
@@ -10,12 +23,9 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 - **Retrospectiva Estruturada**: Framework "Que Bom, Que Pena, Que Tal" para feedback organizado
 - **Análise Visual**: Dashboard interativo com gráficos e estatísticas em tempo real
 - **Exportação de Dados**: Capacidade de exportar feedbacks em JSON/CSV para análise externa
+- **Gestão de Ciclos**: Função de zerar dados para iniciar novas rodadas de avaliação
 
-## 🌐 URLs de Acesso
-
-- **🔗 Aplicação (Sandbox)**: https://3000-i7eh6xypmiuuuw3jeacqi-a402f90a.sandbox.novita.ai
-- **📝 Formulário de Coleta**: https://3000-i7eh6xypmiuuuw3jeacqi-a402f90a.sandbox.novita.ai/
-- **📊 Dashboard Administrativo**: https://3000-i7eh6xypmiuuuw3jeacqi-a402f90a.sandbox.novita.ai/dashboard
+---
 
 ## ✨ Funcionalidades Implementadas
 
@@ -64,16 +74,18 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 | GET | `/api/export?format=json` | Exportar todos os feedbacks em JSON |
 | GET | `/api/export?format=csv` | Exportar todos os feedbacks em CSV |
 | DELETE | `/api/feedbacks/:id` | Remover feedback específico |
-| DELETE | `/api/feedbacks` | **NOVO**: Zerar todos os feedbacks (reiniciar avaliação) |
+| DELETE | `/api/feedbacks` | Zerar todos os feedbacks (reiniciar avaliação) |
+
+---
 
 ## 🏗️ Arquitetura Técnica
 
 ### Stack de Tecnologias
 
 **Backend:**
-- **Hono Framework** - Framework web leve e rápido
-- **Cloudflare Workers** - Runtime edge para baixa latência
-- **D1 Database** - SQLite distribuído globalmente
+- **Hono Framework** - Framework web leve e rápido para edge computing
+- **Cloudflare Workers** - Runtime serverless global
+- **Cloudflare D1** - SQLite distribuído globalmente
 - **TypeScript** - Tipagem estática e segurança
 
 **Frontend:**
@@ -82,7 +94,11 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 - **Axios** - Cliente HTTP para APIs
 - **Font Awesome** - Ícones vetoriais
 
-### Modelo de Dados
+**Deploy:**
+- **Cloudflare Pages** - Hosting global com CDN integrado
+- **Edge Computing** - Baixa latência em qualquer lugar do mundo
+
+### Modelo de Dados (D1 SQLite)
 
 ```sql
 CREATE TABLE feedbacks (
@@ -99,16 +115,18 @@ CREATE INDEX idx_feedbacks_category_date ON feedbacks(category, created_at);
 ```
 
 **Garantias de Anonimato:**
-- ❌ Sem coluna de user_id ou user_ip
+- ❌ Sem coluna `user_id` ou `user_ip`
 - ❌ Sem cookies de sessão
-- ❌ Sem rastreamento de navegador
-- ✅ Apenas: categoria, conteúdo e timestamp
+- ❌ Sem localStorage ou tracking
+- ✅ Apenas: categoria + conteúdo + timestamp
+
+---
 
 ## 📱 Guia do Usuário
 
 ### Para Participantes (Envio de Feedback)
 
-1. **Acesse o formulário**: Abra a URL principal da aplicação
+1. **Acesse o formulário**: https://5c9b9de3.feedback-anonimo.pages.dev/
 2. **Escolha uma categoria**:
    - **😊 Que Bom**: Pontos positivos, conquistas, o que está funcionando bem
    - **😕 Que Pena**: Dificuldades, problemas, pontos que precisam melhorar
@@ -125,7 +143,7 @@ CREATE INDEX idx_feedbacks_category_date ON feedbacks(category, created_at);
 
 ### Para Gestores/Facilitadores (Dashboard)
 
-1. **Acesse o dashboard**: Vá para `/dashboard`
+1. **Acesse o dashboard**: https://5c9b9de3.feedback-anonimo.pages.dev/dashboard
 2. **Visualize estatísticas**: Cards no topo mostram contadores totais
 3. **Analise distribuição**: Gráfico de pizza mostra proporção entre categorias
 4. **Identifique tendências**: Gráfico de linha mostra evolução temporal
@@ -155,14 +173,16 @@ CREATE INDEX idx_feedbacks_category_date ON feedbacks(category, created_at);
 - Dupla confirmação previne exclusão acidental
 - IDs são resetados (próximo feedback será ID 1)
 
+---
+
 ## 🚀 Deploy e Instalação
 
 ### Desenvolvimento Local
 
 ```bash
 # 1. Clonar o repositório
-git clone <repo-url>
-cd webapp
+git clone https://github.com/brunohsre/quebompenatal.git
+cd quebompenatal
 
 # 2. Instalar dependências
 npm install
@@ -185,35 +205,24 @@ npm run dev:sandbox
 
 ### Deploy para Cloudflare Pages
 
+A aplicação já está publicada e configurada!
+
+**URLs de Produção:**
+- Principal: https://feedback-anonimo.pages.dev
+- Deployment atual: https://5c9b9de3.feedback-anonimo.pages.dev
+
+Para fazer um novo deploy:
+
 ```bash
-# 1. Configurar Cloudflare API Token
-# Vá para: https://dash.cloudflare.com/profile/api-tokens
-# Crie um token com permissões de Pages e D1
+# 1. Configure suas credenciais do Cloudflare
+# Crie um API Token em: https://dash.cloudflare.com/profile/api-tokens
 
-# 2. Criar banco de dados de produção
-npx wrangler d1 create feedback-production
-
-# 3. Atualizar wrangler.jsonc com o database_id retornado
-
-# 4. Aplicar migrations em produção
-npm run db:migrate:prod
-
-# 5. Build e deploy
-npm run deploy:prod
-
-# 6. Acessar aplicação em produção
-# URL fornecida pelo Cloudflare após deploy
+# 2. Build e deploy
+npm run build
+npx wrangler pages deploy dist --project-name feedback-anonimo
 ```
 
-### Variáveis de Ambiente
-
-**Arquivo: `.dev.vars` (desenvolvimento local)**
-```
-# Não necessário - D1 local é automático
-```
-
-**Cloudflare Dashboard (produção)**
-- Configure o binding `DB` para o D1 database em Settings > Functions
+---
 
 ## 🔒 Segurança e Privacidade
 
@@ -245,6 +254,8 @@ npm run deploy:prod
 - ✅ Rate limiting via Cloudflare (proteção contra spam)
 - ✅ HTTPS obrigatório em produção
 
+---
+
 ## 📊 Casos de Uso
 
 ### 1. Retrospectivas de Sprint (Agile)
@@ -267,6 +278,8 @@ npm run deploy:prod
 - Equipes contribuem com ideias para o futuro da organização
 - Liderança identifica consensos e prioridades
 
+---
+
 ## 🛠️ Comandos Úteis
 
 ```bash
@@ -288,110 +301,64 @@ npm run deploy:prod      # Deploy com nome do projeto
 # Utilitários
 npm run clean-port       # Liberar porta 3000
 npm run test             # Testar servidor local
-pm2 logs feedback-anonimo --nostream  # Ver logs
 ```
 
-## 📈 Estatísticas Atuais
+---
 
-**Dados de exemplo carregados:**
-- ✅ 9 feedbacks de teste
-- ✅ 3 feedbacks por categoria (distribuição equilibrada)
-- ✅ Dados dos últimos 5 dias para demonstração
+## 📄 Documentação Adicional
 
-## 🎨 Customização
+- **README.md**: Este arquivo (documentação principal)
+- **TESTING.md**: Checklist completo de testes
+- **DEPLOY_GUIDE.md**: Guia detalhado de deploy
+- **FEATURE_RESET.md**: Documentação da funcionalidade de zerar dados
 
-### Cores por Categoria
+---
 
-```javascript
-// Personalize no código (src/index.tsx)
-const categoryColors = {
-  'que_bom': 'green',    // Verde para positivo
-  'que_pena': 'yellow',  // Amarelo para atenção
-  'que_tal': 'blue'      // Azul para ideias
-};
-```
+## 🎓 Tecnologias e Conceitos
 
-### Limites de Caracteres
+Este projeto demonstra:
+- ✅ Edge computing com Cloudflare Workers
+- ✅ Serverless architecture
+- ✅ SQLite distribuído (D1)
+- ✅ APIs RESTful
+- ✅ Frontend moderno com TailwindCSS
+- ✅ Visualização de dados com Chart.js
+- ✅ Design responsivo
+- ✅ Anonimato e privacidade por design
 
-```typescript
-// Ajuste no backend (src/index.tsx)
-if (content.trim().length < 10) { // Mínimo
-  return c.json({ error: 'Feedback muito curto' }, 400)
-}
-if (content.length > 1000) { // Máximo
-  return c.json({ error: 'Feedback muito longo' }, 400)
-}
-```
+---
 
-## 🔄 Próximos Passos Sugeridos
-
-### Funcionalidades Futuras
-
-1. **Análise de Sentimento**:
-   - Integrar NLP para classificar automaticamente o tom dos feedbacks
-   - Identificar padrões e temas recorrentes
-
-2. **Notificações**:
-   - Email/webhook quando novos feedbacks são recebidos
-   - Alertas para feedback negativo crítico
-
-3. **Múltiplas Campanhas**:
-   - Permitir criar campanhas diferentes (projetos, sprints, eventos)
-   - Dashboard separado por campanha
-
-4. **Moderação Avançada**:
-   - Filtro de palavras impróprias
-   - Aprovação manual antes de publicar no dashboard
-
-5. **Autenticação Admin**:
-   - Login protegido para acessar dashboard
-   - Diferentes níveis de permissão (visualizar, exportar, deletar)
-
-6. **Analytics Avançados**:
-   - Wordcloud de termos mais frequentes
-   - Comparação entre períodos
-   - Métricas de engajamento
-
-7. **Integração com Slack/Teams**:
-   - Resumo diário de feedbacks em canais
-   - Comandos para consultar estatísticas
-
-8. **Acessibilidade**:
-   - Melhorias de contraste e navegação por teclado
-   - Suporte a leitores de tela
-
-## 📝 Status do Projeto
+## 📊 Status do Projeto
 
 - ✅ **Backend API**: Completo e funcional
 - ✅ **Interface de Coleta**: Completa e testada
 - ✅ **Dashboard**: Completo com gráficos interativos
 - ✅ **Exportação**: JSON e CSV implementados
 - ✅ **Banco de Dados**: D1 configurado com migrations
-- ✅ **Deployment**: Pronto para Cloudflare Pages
+- ✅ **Zerar Dados**: Funcionalidade completa
+- ✅ **Deploy**: Publicado no Cloudflare Pages
+- ✅ **GitHub**: Código publicado
 - ✅ **Documentação**: README completo
-- ⏳ **Deploy Produção**: Aguardando credenciais Cloudflare
 
-## 📄 Licença
+---
 
-Este projeto foi desenvolvido como uma ferramenta de código aberto para facilitar a comunicação em equipes.
+## 👨‍💻 Autor
 
-## 👥 Contribuições
+**Desenvolvido por**: Bruno Henrique  
+**GitHub**: [@brunohsre](https://github.com/brunohsre)  
+**Repositório**: [quebompenatal](https://github.com/brunohsre/quebompenatal)
 
-Sugestões e melhorias são bem-vindas! Para contribuir:
+---
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/NovaFuncionalidade`)
-3. Commit suas mudanças (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Push para a branch (`git push origin feature/NovaFuncionalidade`)
-5. Abra um Pull Request
-
-## 🆘 Suporte
+## 📞 Suporte
 
 Para dúvidas ou problemas:
-- Verifique os logs: `pm2 logs feedback-anonimo --nostream`
-- Teste as APIs: `curl http://localhost:3000/api/stats`
-- Confira o banco de dados: `npm run db:console:local`
+- Abra uma issue no GitHub: https://github.com/brunohsre/quebompenatal/issues
+- Consulte a documentação em TESTING.md e DEPLOY_GUIDE.md
 
 ---
 
 **Desenvolvido com ❤️ para facilitar comunicação transparente e construtiva em equipes**
+
+**Versão**: 1.0.0  
+**Última Atualização**: Dezembro 2025
