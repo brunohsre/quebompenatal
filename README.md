@@ -1,5 +1,16 @@
 # 💬 Que Bom, Que Pena, Que Tal - Sistema de Feedback Anônimo
 
+<div align="center">
+
+### 🚀 **[ACESSAR APLICAÇÃO](https://5c9b9de3.feedback-anonimo.pages.dev/)** 🚀
+
+[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://5c9b9de3.feedback-anonimo.pages.dev/)
+[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados-green?style=for-the-badge)](https://5c9b9de3.feedback-anonimo.pages.dev/dashboard)
+
+</div>
+
+---
+
 ## 📋 Visão Geral
 
 Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida para facilitar a comunicação transparente em equipes e organizações. O sistema garante 100% de anonimato, permitindo que participantes compartilhem opiniões sinceras sobre o trabalho realizado e sugestões para o futuro.
@@ -10,6 +21,7 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 
 | Recurso | URL |
 |---------|-----|
+| **🚀 Acesso Rápido** | https://brunohsre.github.io/quebompenatal/ (redireciona automaticamente) |
 | **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev |
 | **📝 Formulário de Coleta** | https://5c9b9de3.feedback-anonimo.pages.dev/ |
 | **📊 Dashboard Administrativo** | https://5c9b9de3.feedback-anonimo.pages.dev/dashboard |
