@@ -10,7 +10,7 @@
     {
       "binding": "DB",
       "database_name": "feedback-production",
-      "database_id": "local-dev"
+      "database_id": "a2f14f6f-7822-4c57-a7ae-866fe3c5d57c"
     }
   ]
 }
