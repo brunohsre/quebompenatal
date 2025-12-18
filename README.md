@@ -2,10 +2,10 @@
 
 <div align="center">
 
-### 🚀 **[ACESSAR APLICAÇÃO](https://73f1fc7b.feedback-anonimo.pages.dev/)** 🚀
+### 🚀 **[ACESSAR APLICAÇÃO](https://cac8ce12.feedback-anonimo.pages.dev/)** 🚀
 
-[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://73f1fc7b.feedback-anonimo.pages.dev/)
-[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados_(código:_1234)-green?style=for-the-badge)](https://73f1fc7b.feedback-anonimo.pages.dev/dashboard)
+[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://cac8ce12.feedback-anonimo.pages.dev/)
+[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados_(código:_bhsr)-green?style=for-the-badge)](https://cac8ce12.feedback-anonimo.pages.dev/dashboard)
 
 </div>
 
@@ -23,8 +23,8 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 |---------|-----|
 | **🚀 Acesso Rápido** | https://brunohsre.github.io/quebompenatal/ (redireciona automaticamente) |
 | **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev |
-| **📝 Formulário de Coleta** | https://73f1fc7b.feedback-anonimo.pages.dev/ |
-| **📊 Dashboard Administrativo** | https://73f1fc7b.feedback-anonimo.pages.dev/dashboard |
+| **📝 Formulário de Coleta** | https://cac8ce12.feedback-anonimo.pages.dev/ |
+| **📊 Dashboard Administrativo** | https://cac8ce12.feedback-anonimo.pages.dev/dashboard (código: **bhsr**) |
 | **💻 Repositório GitHub** | https://github.com/brunohsre/quebompenatal |
 
 ---
@@ -55,7 +55,7 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 
 ### 2️⃣ Dashboard de Análise
 ✅ **Completo**
-- **Código de Acesso**: Proteção com código de 4 dígitos (padrão: **1234**)
+- **Código de Acesso**: Proteção com código personalizado (padrão: **bhsr**)
 - **Estatísticas em cards**: Total de feedbacks e contadores por categoria
 - **Gráfico de Pizza**: Distribuição proporcional entre categorias
 - **Gráfico de Linha**: Evolução temporal dos feedbacks (últimos 30 dias)
@@ -111,8 +111,8 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
    - Ajuda usuários a entender o tipo de feedback esperado
 
 3. **Proteção do Dashboard** 🔐
-   - Código de acesso de 4 dígitos para acessar o dashboard
-   - **Código padrão**: `1234`
+   - Código de acesso personalizado para acessar o dashboard
+   - **Código padrão**: `bhsr`
    - Validação via prompt antes de abrir a página administrativa
    - Mensagem de erro para código incorreto
 

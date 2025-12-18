@@ -402,13 +402,13 @@ app.get('/', (c) => {
             
             // Função para acessar dashboard com código
             function accessDashboard() {
-                const code = prompt('Digite o código de acesso de 4 dígitos para o Dashboard:');
+                const code = prompt('Digite o código de acesso para o Dashboard:');
                 
                 if (code === null) {
                     return; // Cancelou
                 }
                 
-                if (code === '1234') {
+                if (code === 'bhsr') {
                     window.location.href = '/dashboard';
                 } else {
                     alert('Código incorreto! Por favor, tente novamente.');
