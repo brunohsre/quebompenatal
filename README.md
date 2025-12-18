@@ -2,10 +2,10 @@
 
 <div align="center">
 
-### 🚀 **[ACESSAR APLICAÇÃO](https://5c9b9de3.feedback-anonimo.pages.dev/)** 🚀
+### 🚀 **[ACESSAR APLICAÇÃO](https://73f1fc7b.feedback-anonimo.pages.dev/)** 🚀
 
-[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://5c9b9de3.feedback-anonimo.pages.dev/)
-[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados-green?style=for-the-badge)](https://5c9b9de3.feedback-anonimo.pages.dev/dashboard)
+[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://73f1fc7b.feedback-anonimo.pages.dev/)
+[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados_(código:_1234)-green?style=for-the-badge)](https://73f1fc7b.feedback-anonimo.pages.dev/dashboard)
 
 </div>
 
@@ -23,8 +23,8 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 |---------|-----|
 | **🚀 Acesso Rápido** | https://brunohsre.github.io/quebompenatal/ (redireciona automaticamente) |
 | **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev |
-| **📝 Formulário de Coleta** | https://5c9b9de3.feedback-anonimo.pages.dev/ |
-| **📊 Dashboard Administrativo** | https://5c9b9de3.feedback-anonimo.pages.dev/dashboard |
+| **📝 Formulário de Coleta** | https://73f1fc7b.feedback-anonimo.pages.dev/ |
+| **📊 Dashboard Administrativo** | https://73f1fc7b.feedback-anonimo.pages.dev/dashboard |
 | **💻 Repositório GitHub** | https://github.com/brunohsre/quebompenatal |
 
 ---
@@ -43,7 +43,9 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 
 ### 1️⃣ Interface de Coleta de Feedbacks
 ✅ **Completo**
-- Formulário simples e intuitivo com 3 categorias
+- **Radio buttons** para seleção clara de categoria (Que Bom/Que Pena/Que Tal)
+- **Exemplos dinâmicos** no placeholder que mudam conforme categoria selecionada
+- **Feedback visual** com bordas e background coloridos na categoria ativa
 - Validação de conteúdo (mínimo 10, máximo 1000 caracteres)
 - Contador de caracteres em tempo real
 - Mensagens de confirmação após envio
@@ -53,6 +55,7 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 
 ### 2️⃣ Dashboard de Análise
 ✅ **Completo**
+- **Código de Acesso**: Proteção com código de 4 dígitos (padrão: **1234**)
 - **Estatísticas em cards**: Total de feedbacks e contadores por categoria
 - **Gráfico de Pizza**: Distribuição proporcional entre categorias
 - **Gráfico de Linha**: Evolução temporal dos feedbacks (últimos 30 dias)
@@ -87,6 +90,38 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 | GET | `/api/export?format=csv` | Exportar todos os feedbacks em CSV |
 | DELETE | `/api/feedbacks/:id` | Remover feedback específico |
 | DELETE | `/api/feedbacks` | Zerar todos os feedbacks (reiniciar avaliação) |
+
+---
+
+## 🆕 Últimas Melhorias Implementadas (v2.1)
+
+### ✨ Melhorias na Interface do Formulário
+
+1. **Radio Buttons Intuitivos** 🎯
+   - Substituição de cards por radio buttons para maior clareza visual
+   - Design com bordas e ícones grandes (😊 😕 💡)
+   - Feedback visual ao selecionar: borda colorida + background suave
+   - Impossível enviar sem selecionar uma categoria
+
+2. **Exemplos Dinâmicos de Feedback** 💬
+   - Placeholder muda automaticamente conforme categoria selecionada
+   - **Que Bom**: _"A comunicação entre as equipes melhorou significativamente este mês..."_
+   - **Que Pena**: _"Os prazos estabelecidos estão muito curtos para a complexidade das demandas..."_
+   - **Que Tal**: _"Que tal implementarmos reuniões semanais de 15 minutos..."_
+   - Ajuda usuários a entender o tipo de feedback esperado
+
+3. **Proteção do Dashboard** 🔐
+   - Código de acesso de 4 dígitos para acessar o dashboard
+   - **Código padrão**: `1234`
+   - Validação via prompt antes de abrir a página administrativa
+   - Mensagem de erro para código incorreto
+
+### 📊 Benefícios das Melhorias
+
+- ✅ **Maior Clareza**: Radio buttons eliminam dúvidas sobre qual categoria selecionar
+- ✅ **Feedback Contextual**: Exemplos dinâmicos orientam usuários na escrita
+- ✅ **Segurança Básica**: Código de acesso protege dados sensíveis
+- ✅ **UX Aprimorada**: Interface mais intuitiva e profissional
 
 ---
 
