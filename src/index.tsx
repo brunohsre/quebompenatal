@@ -238,7 +238,7 @@ app.get('/', (c) => {
                     Suas respostas são confidenciais e ajudarão a melhorar nosso trabalho.
                 </p>
                 <div class="mt-4">
-                    <a href="/dashboard" class="text-indigo-600 hover:text-indigo-800 font-semibold">
+                    <a href="#" onclick="accessDashboard()" class="text-indigo-600 hover:text-indigo-800 font-semibold">
                         <i class="fas fa-chart-line mr-2"></i>Acessar Dashboard
                     </a>
                 </div>
@@ -282,30 +282,33 @@ app.get('/', (c) => {
                 <form id="feedbackForm">
                     <div class="mb-6">
                         <label class="block text-gray-700 font-semibold mb-3">
-                            <i class="fas fa-tag mr-2"></i>Categoria *
+                            <i class="fas fa-tag mr-2"></i>Categoria * (selecione uma opção)
                         </label>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="category" value="que_bom" class="peer sr-only" required>
-                                <div class="border-2 border-gray-300 rounded-lg p-4 text-center peer-checked:border-green-500 peer-checked:bg-green-50 hover:border-green-300 transition">
-                                    <div class="text-2xl mb-2">😊</div>
-                                    <div class="font-semibold text-gray-700">Que Bom</div>
+                        <div class="space-y-3">
+                            <label id="radio_que_bom" class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-green-400 transition bg-white">
+                                <input type="radio" name="category" value="que_bom" class="w-5 h-5 text-green-600 focus:ring-green-500" required onchange="updatePlaceholder('que_bom')">
+                                <span class="ml-3 text-2xl">😊</span>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-semibold text-gray-800">Que Bom</div>
+                                    <div class="text-sm text-gray-600">Pontos positivos e conquistas</div>
                                 </div>
                             </label>
                             
-                            <label class="cursor-pointer">
-                                <input type="radio" name="category" value="que_pena" class="peer sr-only" required>
-                                <div class="border-2 border-gray-300 rounded-lg p-4 text-center peer-checked:border-yellow-500 peer-checked:bg-yellow-50 hover:border-yellow-300 transition">
-                                    <div class="text-2xl mb-2">😕</div>
-                                    <div class="font-semibold text-gray-700">Que Pena</div>
+                            <label id="radio_que_pena" class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-yellow-400 transition bg-white">
+                                <input type="radio" name="category" value="que_pena" class="w-5 h-5 text-yellow-600 focus:ring-yellow-500" required onchange="updatePlaceholder('que_pena')">
+                                <span class="ml-3 text-2xl">😕</span>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-semibold text-gray-800">Que Pena</div>
+                                    <div class="text-sm text-gray-600">Dificuldades e pontos de melhoria</div>
                                 </div>
                             </label>
                             
-                            <label class="cursor-pointer">
-                                <input type="radio" name="category" value="que_tal" class="peer sr-only" required>
-                                <div class="border-2 border-gray-300 rounded-lg p-4 text-center peer-checked:border-blue-500 peer-checked:bg-blue-50 hover:border-blue-300 transition">
-                                    <div class="text-2xl mb-2">💡</div>
-                                    <div class="font-semibold text-gray-700">Que Tal</div>
+                            <label id="radio_que_tal" class="flex items-center p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-blue-400 transition bg-white">
+                                <input type="radio" name="category" value="que_tal" class="w-5 h-5 text-blue-600 focus:ring-blue-500" required onchange="updatePlaceholder('que_tal')">
+                                <span class="ml-3 text-2xl">💡</span>
+                                <div class="ml-3 flex-1">
+                                    <div class="font-semibold text-gray-800">Que Tal</div>
+                                    <div class="text-sm text-gray-600">Sugestões e propostas para o futuro</div>
                                 </div>
                             </label>
                         </div>
@@ -320,7 +323,7 @@ app.get('/', (c) => {
                             name="content" 
                             rows="6" 
                             class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent" 
-                            placeholder="Compartilhe sua opinião... (mínimo 10 caracteres)"
+                            placeholder="Selecione uma categoria acima para ver exemplos de feedback... (mínimo 10 caracteres)"
                             required
                             minlength="10"
                             maxlength="1000"
@@ -366,6 +369,51 @@ app.get('/', (c) => {
             const content = document.getElementById('content');
             const charCount = document.getElementById('charCount');
             const message = document.getElementById('message');
+            
+            // Exemplos de feedback por categoria
+            const placeholderExamples = {
+                que_bom: 'Exemplo: "A comunicação entre as equipes melhorou significativamente este mês, facilitando a resolução de problemas."',
+                que_pena: 'Exemplo: "Os prazos estabelecidos estão muito curtos para a complexidade das demandas, causando sobrecarga na equipe."',
+                que_tal: 'Exemplo: "Que tal implementarmos reuniões semanais de 15 minutos para alinhamento rápido das prioridades?"'
+            };
+            
+            // Função para atualizar placeholder
+            function updatePlaceholder(category) {
+                content.placeholder = placeholderExamples[category];
+                
+                // Atualizar visual do radio selecionado
+                document.querySelectorAll('[id^="radio_"]').forEach(label => {
+                    label.classList.remove('border-green-500', 'border-yellow-500', 'border-blue-500', 'bg-green-50', 'bg-yellow-50', 'bg-blue-50');
+                    label.classList.add('border-gray-300', 'bg-white');
+                });
+                
+                const selectedLabel = document.getElementById('radio_' + category);
+                if (selectedLabel) {
+                    selectedLabel.classList.remove('border-gray-300', 'bg-white');
+                    if (category === 'que_bom') {
+                        selectedLabel.classList.add('border-green-500', 'bg-green-50');
+                    } else if (category === 'que_pena') {
+                        selectedLabel.classList.add('border-yellow-500', 'bg-yellow-50');
+                    } else if (category === 'que_tal') {
+                        selectedLabel.classList.add('border-blue-500', 'bg-blue-50');
+                    }
+                }
+            }
+            
+            // Função para acessar dashboard com código
+            function accessDashboard() {
+                const code = prompt('Digite o código de acesso de 4 dígitos para o Dashboard:');
+                
+                if (code === null) {
+                    return; // Cancelou
+                }
+                
+                if (code === '1234') {
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Código incorreto! Por favor, tente novamente.');
+                }
+            }
             
             // Contador de caracteres
             content.addEventListener('input', () => {
