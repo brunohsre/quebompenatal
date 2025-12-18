@@ -2,10 +2,10 @@
 
 <div align="center">
 
-### 🚀 **[ACESSAR APLICAÇÃO](https://cac8ce12.feedback-anonimo.pages.dev/)** 🚀
+### 🚀 **[ACESSAR APLICAÇÃO](https://feedback-anonimo.pages.dev/)** 🚀
 
-[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://cac8ce12.feedback-anonimo.pages.dev/)
-[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados_(código:_bhsr)-green?style=for-the-badge)](https://cac8ce12.feedback-anonimo.pages.dev/dashboard)
+[![Formulário](https://img.shields.io/badge/📝_Formulário-Enviar_Feedback-blue?style=for-the-badge)](https://feedback-anonimo.pages.dev/)
+[![Dashboard](https://img.shields.io/badge/📊_Dashboard-Ver_Resultados_(código:_bhsr)-green?style=for-the-badge)](https://feedback-anonimo.pages.dev/dashboard)
 
 </div>
 
@@ -22,9 +22,9 @@ Ferramenta completa de coleta e análise de feedbacks anônimos, desenvolvida pa
 | Recurso | URL |
 |---------|-----|
 | **🚀 Acesso Rápido** | https://brunohsre.github.io/quebompenatal/ (redireciona automaticamente) |
-| **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev |
-| **📝 Formulário de Coleta** | https://cac8ce12.feedback-anonimo.pages.dev/ |
-| **📊 Dashboard Administrativo** | https://cac8ce12.feedback-anonimo.pages.dev/dashboard (código: **bhsr**) |
+| **🔗 Aplicação Principal** | https://feedback-anonimo.pages.dev (✅ PRODUÇÃO ATUALIZADA) |
+| **📝 Formulário de Coleta** | https://feedback-anonimo.pages.dev/ |
+| **📊 Dashboard Administrativo** | https://feedback-anonimo.pages.dev/dashboard (código: **bhsr**) |
 | **💻 Repositório GitHub** | https://github.com/brunohsre/quebompenatal |
 
 ---
